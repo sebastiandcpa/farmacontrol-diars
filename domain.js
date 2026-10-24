@@ -74,7 +74,7 @@ export function applyOperation(previous, action, input, actor) {
       requireThat(recipe && recipe.clientId === client.id && recipe.status === 'VALIDA' && recipe.issued <= day() && recipe.expiry >= day(), 'Selecciona una receta válida, vigente y del mismo cliente.');
     }
     requireThat(['BOLETA', 'FACTURA'].includes(input.type), 'Selecciona un tipo de comprobante válido.');
-    if (input.type === 'FACTURA') requireThat(client.docType === 'RUC', 'Para una factura de muestra, selecciona un cliente con RUC.');
+    if (input.type === 'FACTURA') requireThat(client.docType === 'RUC', 'Para una factura interna, selecciona un cliente con RUC.');
     const saleId = id(state.sales);
     const code = `${input.type === 'FACTURA' ? 'F001' : 'B001'}-${String(saleId + 100).padStart(6, '0')}`;
     state.sales.push({ id: saleId, code, clientId: client.id, userId: user.id, recipeId, type: input.type, status: 'CONFIRMADA', date: timestamp, total: round(items.reduce((s, i) => s + i.qty * i.price, 0)), items });
@@ -139,7 +139,7 @@ export function applyOperation(previous, action, input, actor) {
     state.users.push({ id: id(state.users), name: text(input.name, 'Nombre', 120), email, role: input.role, active: true });
   } else if (action === 'userToggle') {
     const target = state.users.find(u => u.id === Number(input.id));
-    requireThat(target && target.id !== user.id, 'No puedes desactivar tu propio perfil de demostración.');
+    requireThat(target && target.id !== user.id, 'No puedes desactivar tu propio perfil.');
     target.active = !target.active;
   } else throw new Error('Operación no disponible.');
   state.updatedAt = timestamp;
@@ -189,9 +189,9 @@ export function createSeed() {
       { id: 4, name: 'Andrés Salazar', email: 'quimico@farmacontrol.local', role: ROLES[3], active: true }
     ],
     recipes: [
-      { id: 1, clientId: 1, code: 'REC-00041', prescriber: 'Profesional de muestra A', issued: offsetDay(-3), expiry: offsetDay(30), status: 'VALIDA', userId: 4 },
-      { id: 2, clientId: 2, code: 'REC-00042', prescriber: 'Profesional de muestra B', issued: offsetDay(-2), expiry: offsetDay(25), status: 'VALIDA', userId: 4 },
-      { id: 3, clientId: 3, code: 'REC-00038', prescriber: 'Profesional de muestra C', issued: offsetDay(-40), expiry: offsetDay(-10), status: 'VALIDA', userId: 4 }
+      { id: 1, clientId: 1, code: 'REC-00041', prescriber: 'Profesional A', issued: offsetDay(-3), expiry: offsetDay(30), status: 'VALIDA', userId: 4 },
+      { id: 2, clientId: 2, code: 'REC-00042', prescriber: 'Profesional B', issued: offsetDay(-2), expiry: offsetDay(25), status: 'VALIDA', userId: 4 },
+      { id: 3, clientId: 3, code: 'REC-00038', prescriber: 'Profesional C', issued: offsetDay(-40), expiry: offsetDay(-10), status: 'VALIDA', userId: 4 }
     ],
     sales: [], purchases: [], movements: []
   };
@@ -200,7 +200,7 @@ export function createSeed() {
     state.lots[i].stock = quantities[i];
     if (quantities[i]) {
       const item = { lotId: i + 1, productId: i + 1, name: state.products[i].name, lot: state.lots[i].code, qty: quantities[i], price: round(state.products[i].price * .6) };
-      const document = `FDEMO-${String(i + 1).padStart(4, '0')}`;
+      const document = `FC-${String(i + 1).padStart(4, '0')}`;
       const date = offsetDay(-15) + 'T15:00:00.000Z';
       state.purchases.push({ id: id(state.purchases), supplierId: i % 3 + 1, document, userId: 3, date, total: round(item.qty * item.price), items: [item] });
       state.movements.push({ id: id(state.movements), lotId: item.lotId, qty: item.qty, type: 'ENTRADA_COMPRA', reference: document, userId: 3, date });
