@@ -42,7 +42,7 @@ function load() {
     const required = ['products','lots','clients','suppliers','users','recipes','sales','purchases','movements'];
     if (saved?.version === VERSION && required.every(key => Array.isArray(saved[key]))) return saved;
     const seed = createSeed(); localStorage.setItem(STORAGE, JSON.stringify(seed)); return seed;
-  } catch { storageNotice = 'El almacenamiento está bloqueado o los datos no son válidos. Puedes recorrer la demo; para guardar cambios habilita el almacenamiento del navegador.'; return createSeed(); }
+  } catch { storageNotice = 'El almacenamiento está bloqueado o los datos no son válidos. Para guardar cambios habilita el almacenamiento del navegador.'; return createSeed(); }
 }
 let state = load();
 for (const purchase of state.purchases) {
