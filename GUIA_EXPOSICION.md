@@ -6,7 +6,7 @@ Duración sugerida: 5 a 7 minutos. Es una propuesta para organizar la explicaci�
 
 1. Abrir https://sebastiandcpa.github.io/farmacontrol-diars/ en una computadora.
 2. Entrar con el perfil **Administrador**. No se necesita contraseña porque es una demostración.
-3. Si se quiere comenzar con los datos iniciales, ir a **Proyecto y tecnologías → Restablecer demo** y confirmar.
+3. Utilizar los registros iniciales del sitio para el recorrido. Cada navegador conserva sus propios cambios.
 4. Grabar la pantalla con el navegador visible y el micrófono del expositor. Usar los datos ficticios incluidos.
 
 ## Inicio y propósito
@@ -65,7 +65,7 @@ Mostrar Alertas, después Reportes.
 
 ## Stack y arquitectura
 
-Abrir **Proyecto y tecnologías** y desplazarse hasta Tecnologías utilizadas.
+Mostrar el repositorio público y las secciones de arquitectura de los informes entregados.
 
 “Esta demo se construyó con HTML5 para la estructura, CSS3 para el diseño y JavaScript con módulos ES para la lógica. Utiliza localStorage para conservar los cambios en el navegador y GitHub Pages para publicar el enlace. No requiere instalar programas para abrirla.”
 

@@ -20,8 +20,8 @@ Esta versión está pensada para abrir un enlace y explicar el proyecto durante 
 - Alertas de existencias agotadas, stock bajo y vencimientos en 30 días.
 - Reportes con periodo de consulta, indicadores calculados y exportación CSV.
 - Perfiles de muestra que pueden activarse o desactivarse.
-- Guía de exposición y explicación del stack dentro de la aplicación.
-- Restablecimiento de los datos iniciales desde Proyecto y tecnologías.
+- Documentación técnica y guion de exposición en los archivos del repositorio.
+- Datos iniciales disponibles al abrir el sitio en un navegador sin registros previos.
 
 Los datos quedan en `localStorage`: recargar conserva las operaciones. Cada navegador mantiene su propia demostración. La selección de perfil simula responsabilidades de interfaz y **no es una barrera de seguridad**.
 
